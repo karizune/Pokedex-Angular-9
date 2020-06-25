@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 import {environment} from './../environments/environment';
 
@@ -19,7 +20,17 @@ export class PokeApiService {
       return this.http.get(`${this.env}/pokemon/?limit=${limit}&offset=${offset}`);
     }
 
-    getPokemonById(PokemonId:string){
+    getPokemonById(PokemonId:number){
       return this.http.get(`${this.env}/pokemon/${PokemonId}`);
+    }
+
+    getPokeApiUrl(url:string){
+      return this.http.get(url)
+    }
+
+    getPokeSpritebyUrl(url:string){
+      return this.http.get(url).pipe(
+        map((poke_info: object[]) => poke_info['sprites'])
+      );
     }
 }

@@ -1,6 +1,10 @@
-<p>pokemon works!</p>
-<div *ngFor="let pokemon of pokemons">
+<p>Lista de Pokemons</p>
+<div *ngIf="pokemons">
+  <div *ngFor="let pokemon of pokemons">
+    <p>{{pokemon['name']}}</p>
 
-  <p>{{pokemon.name}}</p>
-
+    <img *ngIf="pokemon['sprites']" [src]="pokemon['sprites']['front_default']"/>
+    <p *ngIf="!pokemon['sprites']">carregando</p>
+  </div>
 </div>
+<button></button>
