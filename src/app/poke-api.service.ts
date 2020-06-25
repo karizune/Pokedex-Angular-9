@@ -16,6 +16,10 @@ export class PokeApiService {
     }
 
     getAllPokemons(limit?:number,offset?:number) {
-      return this.http.get(`${this.env}pokemon/?limit=${limit}&offset=${offset}`);
+      return this.http.get(`${this.env}/pokemon/?limit=${limit}&offset=${offset}`);
+    }
+
+    getPokemonById(PokemonId:string){
+      return this.http.get(`${this.env}/pokemon/${PokemonId}`);
     }
 }
