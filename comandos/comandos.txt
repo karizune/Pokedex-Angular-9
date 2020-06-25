@@ -1,0 +1,6 @@
+// git hub
+git push 
+
+//gh pages
+
+ng deploy --base-href=/Pokedex-Angular-9/
