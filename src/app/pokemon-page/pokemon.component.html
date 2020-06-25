@@ -2,9 +2,7 @@
 <div *ngIf="pokemons">
   <div *ngFor="let pokemon of pokemons">
     <p>{{pokemon['name']}}</p>
-
-    <img *ngIf="pokemon['sprites']" [src]="pokemon['sprites']['front_default']"/>
-    <p *ngIf="!pokemon['sprites']">carregando</p>
+    <mat-progress-spinner *ngIf="!pokemon['sprites']" mode="indeterminate"></mat-progress-spinner>
+    <img *ngIf="pokemon['sprites']" [src]="pokemon['sprites']['front_default']"/>  
   </div>
 </div>
-<button></button>
