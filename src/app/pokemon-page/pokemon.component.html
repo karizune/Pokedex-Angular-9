@@ -1,8 +1,48 @@
-<p>Lista de Pokemons</p>
+<p style="text-align: center;">base de Pokemons</p>
 <div *ngIf="pokemons">
-  <div *ngFor="let pokemon of pokemons">
-    <p>{{pokemon['name']}}</p>
-    <mat-progress-spinner *ngIf="!pokemon['sprites']" mode="indeterminate"></mat-progress-spinner>
-    <img *ngIf="pokemon['sprites']" [src]="pokemon['sprites']['front_default']"/>  
-  </div>
+  <button type="button" [appExport]="exportPokemons" fileName="Pokemons" class="btn btn-danger">
+    Export
+  </button>
+    <table class="table table-striped table-dark" border=1>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Id</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Peso</th>
+          <th scope="col">Altura</th>
+          <th scope="col">Habilidade 1</th>
+          <th scope="col">Habilidade 2</th>
+          <th scope="col">Habilidade 3</th>
+          <th scope="col">Habilidade 4</th>
+          <th scope="col">Movimento 1</th>
+          <th scope="col">Movimento 2</th>
+          <th scope="col">Movimento 3</th>
+          <th scope="col">Movimento 4</th>
+          <th scope="col">Experiencia base</th>
+          <th scope="col">URL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pokemon of pokemons; let i = index;">
+          <th scope="row">{{i+1}}</th>
+          <td>{{pokemon['id']}}</td>
+          <td>{{pokemon['name']}}</td>
+          <td>{{pokemon['type']}}</td>
+          <td>{{pokemon['weight']}}</td>
+          <td>{{pokemon['height']}}</td>
+          <td>{{pokemon['ability1']}}</td>
+          <td>{{pokemon['ability2']}}</td>
+          <td>{{pokemon['ability3']}}</td>
+          <td>{{pokemon['ability4']}}</td>
+          <td>{{pokemon['move1']}}</td>
+          <td>{{pokemon['move2']}}</td>
+          <td>{{pokemon['move3']}}</td>
+          <td>{{pokemon['move4']}}</td>
+          <td>{{pokemon['baseExp']}}</td>
+          <td>{{pokemon['url']}}</td>
+        </tr>
+      </tbody>
+    </table>
 </div>

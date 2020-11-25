@@ -39,11 +39,13 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { AppComponent } from './app.component';
 import { PokemonComponent } from './pokemon-page/pokemon.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ExportDirective } from './directives/export.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PokemonComponent
+    PokemonComponent,
+    ExportDirective,
   ],
   imports: [
     BrowserModule,

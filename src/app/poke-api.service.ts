@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import {environment} from './../environments/environment';
@@ -32,5 +32,16 @@ export class PokeApiService {
       return this.http.get(url).pipe(
         map((poke_info: object[]) => poke_info['sprites'])
       );
+    }
+    getPokemonByName(name:string){
+      return this.http.get(`${this.env}/pokemon/${name}`);
+    }
+
+    getPokemonSpeciesByName(name:string){
+      return this.http.get(`${this.env}/pokemon-species/${name}`);
+    }
+    
+    getCharacteristicsById(id:number){
+      return this.http.get(`${this.env}/characteristic/${id}`) == undefined ? "sem dados" : this.http.get(`${this.env}/characteristic/${id}`);
     }
 }
