@@ -1,6 +1,6 @@
 <p style="text-align: center; font-size: 40px; margin-top: 20px; "><strong>Base de Pokemons</strong></p>
 <div *ngIf="pokemons">
-  <button type="button" [appExport]="exportPokemons" fileName="Pokemons" class="btn btn-danger">Exportar para Excel</button>
+  <button type="button" (click)="export()" class="btn btn-danger">Exportar para Excel</button>
   <button type="button" (click)="savelocal()" class="btn btn-primary">Salvar Local</button>
   <button type="buton" (click)="atualizar()" class="btn btn-success">Atualizar</button>
 

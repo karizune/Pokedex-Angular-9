@@ -113,26 +113,6 @@ export class PokemonComponent implements OnInit {
                       this.b = category['genus'];
                     }
                   });
-                  this.pokemon = {
-                    Id:element['id'],
-                    Nome:element['name'],
-                    Descricao:element['description'],
-                    Categoria:element['category'],
-                    Experiencia_Base:element['baseExp'],
-                    Peso:element['weight'],
-                    Altura:element['height'],
-                    Tipo_1:element['type0'],
-                    Tipo_2:element['type1'],
-                    Habilidade_1:element['ability1'],
-                    Habilidade_2:element['ability2'],
-                    Movimento_1:element['move1'],
-                    Movimento_2:element['move2'],
-                    Movimento_3:element['move3'],
-                    Movimento_4:element['move4'],
-                    Url_Pokemon:`https://pokeapi.co/api/v2/pokemon/${element['id']}`,
-                    Url_Sprite: element['sprite_front_url']
-                  }
-                  this.exportPokemons.push(this.pokemon);
                 });
               }
           });
@@ -141,6 +121,7 @@ export class PokemonComponent implements OnInit {
   }
 
   export() {
+    this.catchPokemonDataBase();
     this.Excel.exportExcel(this.exportPokemons, 'Pokemons');
   }
 
@@ -155,4 +136,28 @@ export class PokemonComponent implements OnInit {
     this.loadPokemonsDataBase();
   }
 
+  catchPokemonDataBase(){
+    this.pokemons.forEach( element=> {
+      this.pokemon = {
+        Id:element['id'],
+        Nome:element['name'],
+        Descricao:element['description'],
+        Categoria:element['category'],
+        Experiencia_Base:element['baseExp'],
+        Peso:element['weight'],
+        Altura:element['height'],
+        Tipo_1:element['type0'],
+        Tipo_2:element['type1'],
+        Habilidade_1:element['ability1'],
+        Habilidade_2:element['ability2'],
+        Movimento_1:element['move1'],
+        Movimento_2:element['move2'],
+        Movimento_3:element['move3'],
+        Movimento_4:element['move4'],
+        Url_Pokemon:`https://pokeapi.co/api/v2/pokemon/${element['id']}`,
+        Url_Sprite: element['sprite_front_url']
+      }
+      this.exportPokemons.push(this.pokemon);
+    });
+  }
 }
