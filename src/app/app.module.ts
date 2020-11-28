@@ -40,6 +40,8 @@ import { AppComponent } from './app.component';
 import { PokemonComponent } from './pokemon-page/pokemon.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExportDirective } from './directives/export.directive';
+import { FormsModule } from '@angular/forms';
+import { AngularExcelService } from './services/angular-excel.service';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { ExportDirective } from './directives/export.directive';
     ExportDirective,
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -84,7 +87,7 @@ import { ExportDirective } from './directives/export.directive';
     MatPaginatorModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [AngularExcelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

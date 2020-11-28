@@ -8,12 +8,12 @@ export class ExportDirective {
 
   constructor(private exportService: ExportService) { }
 
-  @Input('appExport') customers: any[];
+  @Input('appExport') pokemons: any[];
   @Input() fileName: string;
 
   @HostListener('click', ['$event']) onClick($event) {
     console.log('clicked: ' + $event);
-    this.exportService.exportExcel(this.customers, this.fileName);
+    this.exportService.exportExcel(this.pokemons, this.fileName);
   }
 
 }
