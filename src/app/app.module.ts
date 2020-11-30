@@ -37,17 +37,19 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 
 // meus imports
 import { AppComponent } from './app.component';
-import { PokemonComponent } from './pokemon-page/pokemon.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExportDirective } from './directives/export.directive';
 import { FormsModule } from '@angular/forms';
 import { AngularExcelService } from './services/angular-excel.service';
+import { PokemonDetailsComponent } from './components/pokemon-details/pokemon-details.component';
+import { PokemonComponent } from './components/pokemon-page/pokemon.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PokemonComponent,
     ExportDirective,
+    PokemonDetailsComponent,
   ],
   imports: [
     FormsModule,

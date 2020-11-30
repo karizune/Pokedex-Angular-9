@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ExportService } from '../services/export.service';
-import { PokeApiService } from '../services/poke-api.service';
+import { Router } from '@angular/router';
+import { ExportService } from 'src/app/services/export.service';
+import { PokeApiService } from 'src/app/services/poke-api.service';
 
 @Component({
   selector: 'app-pokemon',
@@ -10,20 +11,20 @@ import { PokeApiService } from '../services/poke-api.service';
 export class PokemonComponent implements OnInit {
 
   constructor(
+    private route:Router,
     private PokeApi : PokeApiService,
-    private Excel: ExportService
+    private Excel : ExportService 
   ) {}
 
   pokemons : object[];
   exportPokemons: object[] = [];
   pokemon:object
-  a:string;
-  b:string;
-  
+  DeveloperMode:boolean = false;
   
   ngOnInit(): void {
-    if(!localStorage.getItem("PokemonDataBase_Angular")){
-      this.loadPokemonsDataBase();
+    this.route.navigate(['/Pokemon']);
+    if(!localStorage.getItem("PokemonDataBase_Angular") != undefined){
+      this.loadPokemonsDataBase(); 
     }
     else{
       this.pokemons = JSON.parse(localStorage.getItem("PokemonDataBase_Angular"));
@@ -39,13 +40,13 @@ export class PokemonComponent implements OnInit {
           (data:object)=>{
             element['id'] = data['id'];
             element['weight'] = (data['weight'] / 10);
-            element['height'] = data['height'];
+            element['height'] = (data['height'] * 10);
             element['baseExp'] = data['base_experience'];
             if(data['sprites'] && data['sprites']['front_default']){
               element['sprite_front_url'] = data['sprites']['front_default'];
             }
             else{
-              element['sprite_front_url'] = "Sem sprite";
+              element['sprite_front_url'] = "https://github.com/Gabriellebru/Sample-App-angular-tutorial/blob/Gabriellebru-missing-icon-1/Missing_Icon.png?raw=true";
             }
             if(data['types'] && data['types']['0']['type'] && data['types']['0']['type']['name']){
               element['type0'] = data['types']['0']['type']['name'];
@@ -104,13 +105,11 @@ export class PokemonComponent implements OnInit {
                   species['flavor_text_entries'].forEach(text_entry => {
                     if(text_entry['language']['name'] == "en"){
                       element['description'] = text_entry['flavor_text'];
-                      this.a = text_entry['flavor_text'];
                     }
                   });
                   species['genera'].forEach(category => {
                     if(category['language']['name'] == "en"){
                       element['category'] = category['genus'];
-                      this.b = category['genus'];
                     }
                   });
                 });
@@ -125,10 +124,13 @@ export class PokemonComponent implements OnInit {
     this.Excel.exportExcel(this.exportPokemons, 'Pokemons');
   }
 
-  savelocal(){
+  saveLocalStorage(){
     localStorage.clear();
     localStorage.setItem("PokemonDataBase_Angular", JSON.stringify(this.pokemons));
-    alert("A lista foi salva em LocalStorage para recarregamento rápido");
+  }
+
+  clearLocalStorage(){
+    localStorage.clear();
   }
 
   atualizar(){

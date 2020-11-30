@@ -1,14 +1,20 @@
 <p style="text-align: center; font-size: 40px; margin-top: 20px; "><strong>Base de Pokemons</strong></p>
 <div *ngIf="pokemons">
-  <button type="button" (click)="export()" class="btn btn-danger">Exportar para Excel</button>
-  <button type="button" (click)="savelocal()" class="btn btn-primary">Salvar Local</button>
-  <button type="buton" (click)="atualizar()" class="btn btn-success">Atualizar</button>
-
+  <button type="button" (click)="export()" class="btn btn-danger">Exportar para Excel</button>&nbsp;
+  <button type="buton" (click)="atualizar()" class="btn btn-success">Atualizar</button>&nbsp;
+  <button type="button" (click)="saveLocalStorage()" class="btn btn-primary">Salvar LocalStorage</button>&nbsp;
+  <div *ngIf="DeveloperMode" style="padding: 20px;">
+    Ferramentas do desenvolvedor
+    <br>
+    <button type="button" (click)="clearLocalStorage()" class="btn btn-primary">Limpar LocalStorage</button>
+    <br>
+  </div>
     <table class="table table-striped table-dark" id="Pokemon_Database">
       <thead>
         <tr>
           <th scope="col">#</th>
           <th scope="col">Id</th>
+          <th scope="col">Sprite</th>
           <th scope="col">Nome</th>
           <th scope="col">Descrição</th>
           <th scope="col">Categoria</th>
@@ -32,12 +38,13 @@
         <tr *ngFor="let pokemon of pokemons; let i = index;">
           <td>{{i + 1}}</td>
           <td>{{pokemon['id']}}</td>
-          <td>{{pokemon['name']}}</td>
+          <td><img [src]="pokemon.sprite_front_url"></td>
+          <td><a (click)="saveLocalStorage()" [routerLink]="['/Pokemon', pokemon['name']]" style="text-decoration:  none; color: white;">{{pokemon['name']}}</a></td>
           <td>{{pokemon['description']}}</td>
           <td>{{pokemon['category']}}</td>
           <td>{{pokemon['baseExp']}}</td>
-          <td>{{pokemon['weight']}}</td>
-          <td>{{pokemon['height']}}</td>
+          <td>{{pokemon['weight']}} Kg</td>
+          <td>{{pokemon['height']}} cm</td>
           <td>{{pokemon['type0']}}</td>
           <td>{{pokemon['type1']}}</td>
           <td>{{pokemon['ability1']}}</td>
