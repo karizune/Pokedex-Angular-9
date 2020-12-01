@@ -16,10 +16,12 @@ export class PokemonDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+    this.pokemons = JSON.parse(localStorage.getItem("PokemonDataBase_Angular"));
     this.route.paramMap.subscribe(params => {
       this.pokemon = this.pokemons[+params.get('name')];
     });
   }
+
+
 
 }
